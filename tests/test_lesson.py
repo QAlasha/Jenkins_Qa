@@ -1,15 +1,17 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 
-def test_one():
-    URL = 'https://stage-web.pfm.team/'
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(time_to_wait=25)
-    driver.get(URL)
-    assert driver.current_url == URL, f'URL: {driver.current_url}'
+def test_google_search():
+    driver = webdriver.Remote(
+        command_executor='http://selenium-hub:4444/wd/hub',
+        options=webdriver.ChromeOptions()
+    )
+    driver.get("http://www.google.com")
+    assert "Google" in driver.title
     driver.quit()
+
+
+if __name__ == "__main__":
+    test_google_search()
 
 
