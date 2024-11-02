@@ -1,11 +1,18 @@
 from selenium import webdriver
-import pytest
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 
 def test_one():
     URL = 'https://stage-web.pfm.team/'
-    driver = webdriver.Chrome()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(time_to_wait=25)
     driver.get(URL)
     assert driver.current_url == URL, f'URL: {driver.current_url}'
     driver.quit()
+
+
+
+
