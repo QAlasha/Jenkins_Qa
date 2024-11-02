@@ -1,6 +1,9 @@
+import allure
 from selenium import webdriver
+import allure
 
 
+@allure.step('Открытие браузера')
 def test_google_search():
     driver = webdriver.Remote(
         command_executor='http://selenium-hub:4444/wd/hub',
@@ -13,5 +16,3 @@ def test_google_search():
 
 if __name__ == "__main__":
     test_google_search()
-
-
